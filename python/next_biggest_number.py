@@ -34,6 +34,16 @@ def is_descending(number):
             return False
     return True
 
+
+def swap(num_list, index_a, index_b):
+    """swap two numbers in a list based on index"""
+    num_to_swap_a = num_list[index_a]
+    num_to_swap_b = num_list[index_b]
+    num_list[index_a] = num_to_swap_b
+    num_list[index_b] = num_to_swap_a
+    return num_list
+
+    
 def main():
     next_biggest_number(sys.argv[1])
 
