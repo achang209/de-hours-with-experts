@@ -50,15 +50,27 @@ def find_second_largest(number, num_list):
     for i in sorted_num_list:
         if i > number:
             return i
-            
-
-def main():
-    next_biggest_number(sys.argv[1])
 
 
 def next_biggest_number(num):
     #TODO: Implement me!
-    return 0
+    # case 1 - single digit input cannot be rearranged
+    # case 2 - input is in descending order cannot be rearranged to fit requirement
+    if is_descending(num) or len(str(num)) < 2:
+        return -1
+    
+    # case 3 - input that is in asc order simply needs the last two digets swapped
+    elif is_ascending(num):
+        num_list = num_to_list(num)
+        result = swap(num_list, len(num_list)-2, len(num_list)-1)
+        result = list_to_num(result)
+        return result
+
+
+def main():
+    result = next_biggest_number(sys.argv[1])
+    print(result)
+
 
 if __name__ == "__main__":
     main()
