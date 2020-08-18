@@ -8,12 +8,31 @@ def num_to_list(number):
         result.append(int(i))
     return result
 
+
 def list_to_num(num_list):
     """function to help convert a list of single digit integers to a single multi-digit integer"""
     num_list = [str(i) for i in num_list]
     num_str = "".join(num_list)
     result = int(num_str)
     return result
+
+
+def is_ascending(number):
+    """return true if digits are arranged in ascending order"""
+    num_list = num_to_list(number)
+    for i in range(len(num_list)-1):
+        if num_list[i] > num_list[i+1]:
+            return False
+    return True
+
+
+def is_descending(number):
+    """return true if digits are arranged in descending order"""
+    num_list = num_to_list(number)
+    for i in range(len(num_list)-1):
+        if num_list[i] < num_list[i+1]:
+            return False
+    return True
 
 def main():
     next_biggest_number(sys.argv[1])
