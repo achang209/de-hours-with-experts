@@ -67,6 +67,40 @@ def next_biggest_number(num):
         return result
 
 
+    # if above cases are not true then we traverse from the right until i < i+1 where i represent a numeric place value
+    # this will determine lowest place value where we have a suitable set of digits
+    # to rearrange in such a way where we yield the next biggest number
+    else:
+        num_list = num_to_list(num)
+        for i in range(len(num_list)-2, -1, -1):
+            if num_list[i] < num_list[i+1]:
+                list_slice = num_list[i:] # creates subset of digits from lowest place value
+
+            # if subset in question only has 2 digits
+            # then the only rearragenment option is to swap one with the other
+            # this has the same net approach as case 2
+                if len(list_slice) < 3:
+                    result = swap(num_list, len(num_list)-2, len(num_list)-1)
+                    result = list_to_num(result)
+                    return result 
+                else:
+                    # swap list_slice[0] with next largest number in subset
+                    # this essentially swaps the current place value with the next largest number in subset
+                    next_largest_in_subset = find_second_largest(list_slice[0], list_slice)
+                    index_a = 0
+                    index_b = list_slice.index(next_largest_in_subset)
+                    swapped_list_slice = swap(list_slice, index_a, index_b) 
+
+                    # sort subset, in asc order, excluding the new current place value
+                    sorted_subset = sorted(swapped_list_slice[1:])
+                    # adds place value back to subset
+                    sorted_subset.insert(0, swapped_list_slice[0])
+                    # add remaining digits before i with newly arranged subset
+                    result = num_list[:i] + sorted_subset
+                    result = list_to_num(result)
+                    return result
+                    
+                      
 def main():
     result = next_biggest_number(sys.argv[1])
     print(result)
