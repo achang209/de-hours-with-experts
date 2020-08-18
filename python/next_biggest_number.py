@@ -62,7 +62,13 @@ def next_biggest_number(num):
     # case 3 - input that is in asc order simply needs the last two digets swapped
     elif is_ascending(num):
         num_list = num_to_list(num)
-        result = swap(num_list, len(num_list)-2, len(num_list)-1)
+        a = len(num_list)-2
+        b = len(num_list)-1 
+        # accounts for when digits to be swapped are the same
+        while num_list[a] == num_list[b]:
+            a = a-1
+            b = b-1
+        result = swap(num_list, a, b)
         result = list_to_num(result)
         return result
 
