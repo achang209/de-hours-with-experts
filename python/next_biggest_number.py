@@ -43,7 +43,15 @@ def swap(num_list, index_a, index_b):
     num_list[index_b] = num_to_swap_a
     return num_list
 
-    
+
+def find_second_largest(number, num_list):
+    """find second largest number in num_list based on number"""
+    sorted_num_list = sorted(num_list)
+    for i in sorted_num_list:
+        if i > number:
+            return i
+            
+
 def main():
     next_biggest_number(sys.argv[1])
 
