@@ -72,7 +72,6 @@ def next_biggest_number(num):
         result = list_to_num(result)
         return result
 
-
     # if above cases are not true then we traverse from the right until i < i+1 where i represent a numeric place value
     # this will determine lowest place value where we have a suitable set of digits
     # to rearrange in such a way where we yield the next biggest number
@@ -93,14 +92,14 @@ def next_biggest_number(num):
                     # swap list_slice[0] with next largest number in subset
                     # this essentially swaps the current place value with the next largest number in subset
                     next_largest_in_subset = find_second_largest(list_slice[0], list_slice)
-                    index_a = 0
-                    index_b = list_slice.index(next_largest_in_subset)
-                    swapped_list_slice = swap(list_slice, index_a, index_b) 
+                    a = 0
+                    b = list_slice.index(next_largest_in_subset)
+                    swapped_subset = swap(list_slice, a, b) 
 
                     # sort subset, in asc order, excluding the new current place value
-                    sorted_subset = sorted(swapped_list_slice[1:])
+                    sorted_subset = sorted(swapped_subset[1:])
                     # adds place value back to subset
-                    sorted_subset.insert(0, swapped_list_slice[0])
+                    sorted_subset.insert(0, swapped_subset[0])
                     # add remaining digits before i with newly arranged subset
                     result = num_list[:i] + sorted_subset
                     result = list_to_num(result)
